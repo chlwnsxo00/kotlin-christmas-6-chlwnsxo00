@@ -1,5 +1,12 @@
 package christmas
 
+import christmas.controller.Controller
+
 fun main() {
-    TODO("프로그램 구현")
+    val controller = Controller()
+    try {
+        controller.run()
+    }catch (e:Exception){
+        println(e.message)
+    }
 }
