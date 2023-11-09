@@ -24,7 +24,6 @@ enum class Menu(val menu: String, val price: Int, val type: String) {
             return values().firstOrNull { it.menu == menu }?.type
                 ?: throw IllegalArgumentException(isInvalidOrderError)
         }
-
         fun ofPrice(menu: String): Int {
             return values().firstOrNull { it.menu == menu }?.price
                 ?: throw IllegalArgumentException(isInvalidOrderError)
