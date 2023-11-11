@@ -12,4 +12,12 @@ class CalenderDay(private val date: Int) {
     fun isWeekend(): Boolean {
         return isWeekend
     }
+    fun getdate():Int{
+        return date
+    }
+    fun isSpecialDay():Boolean{
+        if(date%7==3||date==25)
+            return true
+        return false
+    }
 }

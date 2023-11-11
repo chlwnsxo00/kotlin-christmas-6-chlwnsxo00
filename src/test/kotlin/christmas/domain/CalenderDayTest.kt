@@ -16,4 +16,17 @@ class CalenderDayTest {
         //then
         Assertions.assertThat(day.isWeekend()).isEqualTo(result)
     }
+
+    @Test
+    fun `isWeekend 메소드 사용시 3일을 입력시 일요일이므로 false를 출력`() {
+        //given
+        val input = 3
+        val result = false
+
+        //when
+        val day = CalenderDay(input)
+
+        //then
+        Assertions.assertThat(day.isWeekend()).isEqualTo(result)
+    }
 }
