@@ -5,19 +5,20 @@ import christmas.constants.isInvalidDateError
 import christmas.constants.isInvalidOrderError
 import christmas.constants.isOrderedOnlyDrinkError
 import christmas.constants.isTotalNumberOfMenusOver20Error
+import org.junit.platform.commons.util.StringUtils.isBlank
 
 
 class CalenderValidate {
     fun validateVisitDate(input: String): Int {
-        isCharacter(input)
-        isBlank(input)
+        isDateCharacter(input)
+        isDateBlank(input)
         isInRange(input)
         return input.toInt()
     }
 
     fun validateOrderedMenu(input: String): Map<String, Int> {
         val result = mutableMapOf<String, Int>()
-        isBlank(input)
+        isMenuBlank(input)
         val menuSet = input.split(",")
         for (menu in menuSet) {
             val pair = menu.split("-")
@@ -69,8 +70,8 @@ class CalenderValidate {
     }
 
     private fun validateMenuAmount(input: String) {
-        isCharacter(input)
-        isBlank(input)
+        isMenuCharacter(input)
+        isMenuBlank(input)
         isPositive(input)
     }
 
@@ -79,9 +80,14 @@ class CalenderValidate {
             throw IllegalArgumentException(isInvalidOrderError)
     }
 
-    private fun isBlank(input: String) {
+    private fun isDateBlank(input: String) {
         if (input.isBlank())
             throw IllegalArgumentException(isInvalidDateError)
+    }
+
+    private fun isMenuBlank(input: String) {
+        if (input.isBlank())
+            throw IllegalArgumentException(isInvalidOrderError)
     }
 
     private fun isInRange(input: String) {
@@ -89,9 +95,14 @@ class CalenderValidate {
             throw IllegalArgumentException(isInvalidDateError)
     }
 
-    private fun isCharacter(input: String) {
+    private fun isDateCharacter(input: String) {
         if (input.toIntOrNull() == null)
             throw IllegalArgumentException(isInvalidDateError)
+    }
+
+    private fun isMenuCharacter(input: String) {
+        if (input.toIntOrNull() == null)
+            throw IllegalArgumentException(isInvalidOrderError)
     }
 
 }

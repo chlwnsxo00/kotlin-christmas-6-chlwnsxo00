@@ -1,6 +1,7 @@
 package christmas.domain
 
 import christmas.constants.appetizer
+import christmas.constants.dessert
 import christmas.constants.main
 
 class CalenderCompute {
@@ -15,7 +16,7 @@ class CalenderCompute {
     fun weekdayDiscountCompute(result: Map<String, Int>): Int {
         var discount = 0
         for (menu in result) {
-            if (Menu.ofType(menu.key) == appetizer)
+            if (Menu.ofType(menu.key) == dessert)
                 discount -= menu.value * 2023
         }
         return discount
