@@ -30,4 +30,12 @@ class CalenderCompute {
         return discount
     }
 
+    fun decideBadge(totalDiscount:Int):String{
+        when{
+            totalDiscount>20000 -> return "산타"
+            totalDiscount>10000 -> return "트리"
+            totalDiscount>5000 -> return "별"
+        }
+        return "없음"
+    }
 }

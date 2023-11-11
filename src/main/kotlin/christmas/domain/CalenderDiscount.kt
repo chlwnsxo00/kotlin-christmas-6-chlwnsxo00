@@ -45,8 +45,16 @@ class CalenderDiscount(private val day: CalenderDay, private val result: Map<Str
         }
     }
 
-    fun isTotalPriceOver120000():Boolean{
+    fun isTotalPriceOver120000(): Boolean {
         return totalPrice >= 120000
+    }
+
+    fun getTotalDiscount():Int{
+        return totalDiscount
+    }
+
+    fun getTotalPrice():Int{
+        return totalPrice
     }
 
 }

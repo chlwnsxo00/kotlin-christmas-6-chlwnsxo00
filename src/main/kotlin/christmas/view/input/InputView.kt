@@ -1,20 +1,29 @@
 package christmas.view.input
 
 import camp.nextstep.edu.missionutils.Console
-import christmas.constants.askOrderMenuMessage
-import christmas.constants.askVisitDateMessage
-import christmas.constants.introMessage
+import christmas.domain.CalenderValidate
 import christmas.view.output.OutputView
 
 class InputView {
-    val output = OutputView()
-    fun askVisitDate():String{
-        output.printAskVisitDateMessage()
-        return Console.readLine()
+    private val output = OutputView()
+    private val validate = CalenderValidate()
+    fun askVisitDate(): Int {
+        return try {
+            output.printAskVisitDateMessage()
+            return validate.validateVisitDate(Console.readLine())
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            askVisitDate()
+        }
     }
 
-    fun askOrderMenu():String{
-        output.printAskOrderMenuMessage()
-        return Console.readLine()
+    fun askOrderMenu(): Map<String, Int> {
+        return try{
+            output.printAskOrderMenuMessage()
+            return validate.validateOrderedMenu(Console.readLine())
+        }catch (e:IllegalArgumentException){
+            println(e.message)
+            askOrderMenu()
+        }
     }
 }
