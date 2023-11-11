@@ -1,4 +1,4 @@
 package christmas.domain
 
-class CalenderResult {
+class CalenderResult() {
 }
