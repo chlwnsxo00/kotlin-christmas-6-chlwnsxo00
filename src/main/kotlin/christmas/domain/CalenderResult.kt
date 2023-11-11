@@ -1,4 +1,5 @@
 package christmas.domain
 
-class CalenderResult() {
+class CalenderResult(val result : Map<String,Int>) {
+
 }

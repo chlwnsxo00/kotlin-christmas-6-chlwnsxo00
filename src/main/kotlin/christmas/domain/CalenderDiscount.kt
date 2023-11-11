@@ -1,4 +1,4 @@
 package christmas.domain
 
-enum class Discount {
+class CalenderDiscount {
 }

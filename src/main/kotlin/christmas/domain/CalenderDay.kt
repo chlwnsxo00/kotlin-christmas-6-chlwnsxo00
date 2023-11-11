@@ -1,4 +1,14 @@
 package christmas.domain
 
-class CalenderDay {
+class CalenderDay (private val date:Int){
+    private val isWeekend = getDayOfTheWeekend()
+    private fun getDayOfTheWeekend():Boolean{
+        if(date%7==1 or 2){
+            return true
+        }
+        return false
+    }
+    fun isWeekend():Boolean{
+        return isWeekend
+    }
 }
