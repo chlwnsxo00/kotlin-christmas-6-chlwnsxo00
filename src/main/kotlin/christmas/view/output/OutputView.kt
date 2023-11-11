@@ -4,6 +4,7 @@ import christmas.constants.askOrderMenuMessage
 import christmas.constants.askVisitDateMessage
 import christmas.constants.christmasDDayDiscountMessage
 import christmas.constants.introMessage
+import christmas.constants.noneDiscountMessage
 import christmas.constants.presentationDiscountMessage
 import christmas.constants.specialDiscountMessage
 import christmas.constants.weekdayDiscountMessage
@@ -29,23 +30,35 @@ class OutputView {
     fun printChristmasDDayDiscountResult(discount:Int){
         if(discount!=0)
             println(christmasDDayDiscountMessage + priceMessage(discount))
+        else
+            println(noneDiscountMessage)
     }
 
     fun printWeekdayDiscountResult(discount:Int){
         if(discount!=0)
             println(weekdayDiscountMessage + priceMessage(discount))
+        else
+            println(noneDiscountMessage)
     }
 
     fun printWeekendDiscountResult(discount: Int) {
         if(discount!=0)
             println(weekendDiscountMessage + priceMessage(discount))
+        else
+            println(noneDiscountMessage)
     }
 
     fun printSpecialDiscountResult(discount: Int) {
-        println(specialDiscountMessage + priceMessage(discount))
+        if(discount!=0)
+            println(specialDiscountMessage + priceMessage(discount))
+        else
+            println(noneDiscountMessage)
     }
 
     fun presentationDiscount(discount: Int) {
-        println(presentationDiscountMessage + priceMessage(discount))
+        if(discount!=0)
+            println(presentationDiscountMessage + priceMessage(discount))
+        else
+            println(noneDiscountMessage)
     }
 }

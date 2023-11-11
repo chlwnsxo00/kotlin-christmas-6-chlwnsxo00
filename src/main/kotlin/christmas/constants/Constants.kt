@@ -19,6 +19,7 @@ const val weekdayDiscountMessage = "평일 할인: "
 const val weekendDiscountMessage = "주말 할인: "
 const val specialDiscountMessage = "특별 할인: "
 const val presentationDiscountMessage = "증정 이벤트: "
+const val noneDiscountMessage = "없음"
 
 
 
