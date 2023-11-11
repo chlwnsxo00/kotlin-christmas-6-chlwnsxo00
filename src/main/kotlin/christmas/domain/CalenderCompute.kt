@@ -16,7 +16,7 @@ class CalenderCompute {
         var discount = 0
         for (menu in result) {
             if (Menu.ofType(menu.key) == appetizer)
-                discount -= 2023
+                discount -= menu.value * 2023
         }
         return discount
     }
@@ -25,7 +25,7 @@ class CalenderCompute {
         var discount = 0
         for (menu in result) {
             if (Menu.ofType(menu.key) == main)
-                discount -= 2023
+                discount -= menu.value * 2023
         }
         return discount
     }
