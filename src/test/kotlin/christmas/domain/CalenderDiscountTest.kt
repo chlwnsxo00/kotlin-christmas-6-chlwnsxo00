@@ -4,14 +4,12 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class CalenderDiscountTest {
-
-
     @Test
     fun `christmasDDayDiscount 메소드 사용시 할인 적용 및 출력`() {
         //given
         val day = CalenderDay(11)
-        val menu = mutableMapOf(Pair("타파스",2),Pair("티본스테이크",1))
-        val discount = CalenderDiscount(day,menu)
+        val menu = mutableMapOf(Pair("타파스", 2), Pair("티본스테이크", 1))
+        val discount = CalenderDiscount(day, menu)
         val result = -2000
 
         //when
@@ -25,8 +23,8 @@ class CalenderDiscountTest {
     fun `weekdayDiscount 메소드 사용시 할인 적용 및 출력`() {
         //given
         val day = CalenderDay(11)
-        val menu = mutableMapOf(Pair("타파스",2),Pair("티본스테이크",1))
-        val discount = CalenderDiscount(day,menu)
+        val menu = mutableMapOf(Pair("초코케이크", 2), Pair("티본스테이크", 1))
+        val discount = CalenderDiscount(day, menu)
         val result = -4046
 
         //when
@@ -40,8 +38,8 @@ class CalenderDiscountTest {
     fun `weekendDiscount 메소드 사용시 할인 적용 및 출력`() {
         //given
         val day = CalenderDay(1)
-        val menu = mutableMapOf(Pair("타파스",2),Pair("티본스테이크",1))
-        val discount = CalenderDiscount(day,menu)
+        val menu = mutableMapOf(Pair("타파스", 2), Pair("티본스테이크", 1))
+        val discount = CalenderDiscount(day, menu)
         val result = -2023
 
         //when
@@ -55,8 +53,8 @@ class CalenderDiscountTest {
     fun `specialDiscount 메소드 사용시 할인 적용 및 출력`() {
         //given
         val day = CalenderDay(25)
-        val menu = mutableMapOf(Pair("타파스",2),Pair("티본스테이크",1))
-        val discount = CalenderDiscount(day,menu)
+        val menu = mutableMapOf(Pair("타파스", 2), Pair("티본스테이크", 1))
+        val discount = CalenderDiscount(day, menu)
         val result = -1000
 
         //when
@@ -70,8 +68,8 @@ class CalenderDiscountTest {
     fun `presentationDiscount 메소드 사용시 할인 적용 및 출력`() {
         //given
         val day = CalenderDay(1)
-        val menu = mutableMapOf(Pair("타파스",2),Pair("티본스테이크",10))
-        val discount = CalenderDiscount(day,menu)
+        val menu = mutableMapOf(Pair("타파스", 2), Pair("티본스테이크", 10))
+        val discount = CalenderDiscount(day, menu)
         val result = -25000
 
         //when

@@ -29,4 +29,29 @@ class CalenderDayTest {
         //then
         Assertions.assertThat(day.isWeekend()).isEqualTo(result)
     }
+    @Test
+    fun ` isSpecialDay 메소드 사용시 25일을 입력시 special day이므로 true 출력`() {
+        //given
+        val input = 25
+        val result = true
+
+        //when
+        val day = CalenderDay(input)
+
+        //then
+        Assertions.assertThat(day.isSpecialDay()).isEqualTo(result)
+    }
+
+    @Test
+    fun `isSpecialDay 메소드 사용시 3일을 입력시 special day이므로 true 출력`() {
+        //given
+        val input = 3
+        val result = true
+
+        //when
+        val day = CalenderDay(input)
+
+        //then
+        Assertions.assertThat(day.isSpecialDay()).isEqualTo(result)
+    }
 }

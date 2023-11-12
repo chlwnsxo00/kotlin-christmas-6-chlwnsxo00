@@ -1,60 +1,65 @@
 package christmas.domain
 
-import christmas.view.output.OutputView
 
 class CalenderDiscount(private val day: CalenderDay, private val result: Map<String, Int>) {
-    private val output = OutputView()
     private val compute = CalenderCompute()
     private var totalDiscount = 0
-    private val totalPrice = result.entries.sumOf { Menu.ofPrice(it.key) * it.value }
-    fun christmasDDayDiscount() {
-        val discount = compute.christmasDDayDiscountCompute(day.getdate())
+    fun christmasDDayDiscount(): Int {
+        val discount = compute.christmasDDayDiscountCompute(day.getDate())
         totalDiscount += discount
-        output.printChristmasDDayDiscountResult(discount)
+        return discount
     }
 
-    fun weekdayDiscount() {
+    fun weekdayDiscount(): Int {
+        var discount = 0
         if (day.isWeekend().not()) {
-            val discount = compute.weekdayDiscountCompute(result)
+            discount = compute.weekdayDiscountCompute(result)
             totalDiscount += discount
-            output.printWeekdayDiscountResult(discount)
         }
+        return discount
     }
 
-    fun weekendDiscount() {
+    fun weekendDiscount(): Int {
+        var discount = 0
         if (day.isWeekend()) {
-            val discount = compute.weekendDiscountCompute(result)
+            discount = compute.weekendDiscountCompute(result)
             totalDiscount += discount
-            output.printWeekendDiscountResult(discount)
         }
+        return discount
     }
 
-    fun specialDiscount() {
+    fun specialDiscount(): Int {
+        var discount = 0
         if (day.isSpecialDay()) {
-            val discount = -1000
+            discount = -1000
             totalDiscount += discount
-            output.printSpecialDiscountResult(discount)
         }
+        return discount
     }
 
-    fun presentationDiscount() {
+    fun presentationDiscount(): Int {
+        var discount = 0
         if (isTotalPriceOver120000()) {
-            val discount = -25000
+            discount = -25000
             totalDiscount += discount
-            output.presentationDiscount(discount)
         }
+        return discount
     }
 
     fun isTotalPriceOver120000(): Boolean {
-        return totalPrice >= 120000
+        return getTotalPrice() >= 120000
     }
 
-    fun getTotalDiscount():Int{
+    fun getTotalDiscount(): Int {
         return totalDiscount
     }
 
-    fun getTotalPrice():Int{
-        return totalPrice
+    fun getTotalPrice(): Int {
+        return result.entries.sumOf { Menu.ofPrice(it.key) * it.value }
+    }
+
+    fun getFinalPayment() : Int{
+        return compute.finalPaymentCompute(getTotalPrice(),getTotalDiscount())
     }
 
 }

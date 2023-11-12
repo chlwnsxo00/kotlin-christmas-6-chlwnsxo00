@@ -5,14 +5,12 @@ import christmas.constants.isInvalidDateError
 import christmas.constants.isInvalidOrderError
 import christmas.constants.isOrderedOnlyDrinkError
 import christmas.constants.isTotalNumberOfMenusOver20Error
-import org.junit.platform.commons.util.StringUtils.isBlank
-
 
 class CalenderValidate {
     fun validateVisitDate(input: String): Int {
         isDateCharacter(input)
         isDateBlank(input)
-        isInRange(input)
+        isDateInRange(input)
         return input.toInt()
     }
 
@@ -29,26 +27,23 @@ class CalenderValidate {
             validateMenuAmount(menuAmount)
             result[menuName] = menuAmount.toInt()
         }
-        validateResult(result)
+        isTotalNumberOfMenusOver20(result)
+        isOrderedOnlyDrink(result)
         return result
     }
 
-    private fun validateResult(result: MutableMap<String, Int>) {
-        isTotalNumberOfMenusOver20Error(result)
-        isOrderedOnlyDrink(result)
-    }
-
     private fun isOrderedOnlyDrink(result: MutableMap<String, Int>) {
+        var drinkCount = 0
         for (menu in result) {
             if (Menu.ofType(menu.key) == drink) {
-                result.remove(menu.key)
+                drinkCount++
             }
         }
-        if (result.isEmpty())
+        if (drinkCount == result.size)
             throw IllegalArgumentException(isOrderedOnlyDrinkError)
     }
 
-    private fun isTotalNumberOfMenusOver20Error(result: MutableMap<String, Int>) {
+    private fun isTotalNumberOfMenusOver20(result: MutableMap<String, Int>) {
         val totalMenuAmount = result.values.sum()
         if (totalMenuAmount > 20)
             throw IllegalArgumentException(isTotalNumberOfMenusOver20Error)
@@ -90,7 +85,7 @@ class CalenderValidate {
             throw IllegalArgumentException(isInvalidOrderError)
     }
 
-    private fun isInRange(input: String) {
+    private fun isDateInRange(input: String) {
         if (input.toInt() !in 1..31)
             throw IllegalArgumentException(isInvalidDateError)
     }

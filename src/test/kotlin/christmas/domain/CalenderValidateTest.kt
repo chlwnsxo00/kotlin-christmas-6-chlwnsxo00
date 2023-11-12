@@ -7,6 +7,7 @@ import org.junit.jupiter.api.assertThrows
 
 class CalenderValidateTest {
     val validate = CalenderValidate()
+
     @Test
     fun `validateVisitDate 메소드 사용시 식당 예상 방문 날짜 입력 조건에 맞는지 확인 후 아닐시 오류 발생`() {
         assertSimpleTest {
@@ -27,6 +28,7 @@ class CalenderValidateTest {
             }
         }
     }
+
     @Test
     fun `validateOrderedMenu 메소드 사용시 메뉴 입력의 양식에 맞는지 확인 후 아닐시 오류 발생`() {
         assertSimpleTest {
@@ -59,5 +61,26 @@ class CalenderValidateTest {
                 validate.validateVisitDate("타파스-0")
             }
         }
+    }
+
+    @Test
+    fun `validateVisitDate 메소드 사용시 정상작동 확인`() {
+        assertThat(validate.validateVisitDate("10"))
+            .isEqualTo(
+                10
+            )
+    }
+
+    @Test
+    fun `validateOrderedMenu 메소드 사용시 정상작동 확인`() {
+        assertThat(validate.validateOrderedMenu("티본스테이크-1,바비큐립-1,제로콜라-1,초코케이크-2"))
+            .isEqualTo(
+                mutableMapOf(
+                    Pair("티본스테이크", 1),
+                    Pair("바비큐립", 1),
+                    Pair("초코케이크", 2),
+                    Pair("제로콜라", 1)
+                )
+            )
     }
 }

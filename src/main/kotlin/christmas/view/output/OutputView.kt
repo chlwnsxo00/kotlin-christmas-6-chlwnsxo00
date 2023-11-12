@@ -18,107 +18,102 @@ import java.util.Locale
 
 class OutputView {
     private val priceMessage = "%s원"
-    fun printAskVisitDateMessage(){
+    fun printAskVisitDateMessageWithIntro() {
         println(introMessage)
         println(askVisitDateMessage)
     }
 
-    fun printAskOrderMenuMessage(){
+    fun printAskVisitDateMessage(){
+        println(askVisitDateMessage)
+    }
+    fun printAskOrderMenuMessage() {
         println(askOrderMenuMessage)
     }
+
     private fun priceMessage(price: Int): String {
         val formatter = NumberFormat.getNumberInstance(Locale("en", "US"))
         return priceMessage.format(formatter.format(price))
     }
 
-    fun printChristmasDDayDiscountResult(discount:Int){
-        if(discount!=0)
+    private fun printChristmasDDayDiscountResult(discount: Int) {
+        if (discount != 0)
             println(christmasDDayDiscountMessage + priceMessage(discount))
     }
 
-    fun printWeekdayDiscountResult(discount:Int){
-        if(discount!=0)
+    private fun printWeekdayDiscountResult(discount: Int) {
+        if (discount != 0)
             println(weekdayDiscountMessage + priceMessage(discount))
     }
 
-    fun printWeekendDiscountResult(discount: Int) {
-        if(discount!=0)
+    private fun printWeekendDiscountResult(discount: Int) {
+        if (discount != 0)
             println(weekendDiscountMessage + priceMessage(discount))
     }
 
-    fun printSpecialDiscountResult(discount: Int) {
-        if(discount!=0)
+    private fun printSpecialDiscountResult(discount: Int) {
+        if (discount != 0)
             println(specialDiscountMessage + priceMessage(discount))
     }
 
-    fun presentationDiscount(discount: Int) {
-        if(discount!=0)
+    private fun presentationDiscount(discount: Int) {
+        if (discount != 0)
             println(presentationDiscountMessage + priceMessage(discount))
     }
-
-    fun printPreviewEventBenefits(day: CalenderDay,result: Map<String, Int>){
-        println("12월 26일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!")
+    fun printIntroPreviewEventBenefits(date : Int){
+        println("12월 ${date}일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!")
         println()
-        printOrderedMenu(result)
-        val discount = CalenderDiscount(day,result)
-        printTotalPriceBeforeDiscount(discount.getTotalPrice())
-        printPresentationMenu(discount.isTotalPriceOver120000())
-        printDiscountLog(discount)
-        printTotalDiscount(discount)
-        printFinalPayment(discount.getTotalPrice()+discount.getTotalDiscount())
-        printEventBadge(discount.getTotalDiscount())
     }
 
 
-    fun printOrderedMenu(result : Map<String,Int>){
+    fun printOrderedMenu(result: Map<String, Int>) {
         println("<주문 메뉴>")
-        for (menu in result){
+        for (menu in result) {
             println("${menu.key} ${menu.value}개")
         }
         println()
     }
 
-    fun printTotalPriceBeforeDiscount(total : Int){
+    fun printTotalPriceBeforeDiscount(total: Int) {
         println("<할인 전 총주문 금액>")
         println(priceMessage(total))
         println()
     }
 
-    fun printPresentationMenu(bool : Boolean){
+    fun printPresentationMenu(bool: Boolean) {
         println("<증정 메뉴>")
-        if(bool)
+        if (bool)
             println("샴페인 1개")
         else
             println(noneDiscountMessage)
         println()
     }
 
-    fun printDiscountLog(discount: CalenderDiscount){
+    fun printDiscountLog(discount: CalenderDiscount) {
         println("<혜택 내역>")
-        discount.christmasDDayDiscount()
-        discount.weekdayDiscount()
-        discount.weekendDiscount()
-        discount.specialDiscount()
-        discount.presentationDiscount()
-        if(discount.getTotalDiscount()==0)
+        printChristmasDDayDiscountResult(discount.christmasDDayDiscount())
+        printWeekdayDiscountResult(discount.weekdayDiscount())
+        printWeekendDiscountResult(discount.weekendDiscount())
+        printSpecialDiscountResult(discount.specialDiscount())
+        presentationDiscount(discount.presentationDiscount())
+        if (discount.getTotalDiscount() == 0)
             println(noneDiscountMessage)
         println()
     }
 
-    fun printTotalDiscount(discount: CalenderDiscount){
+    fun printTotalDiscount(totalDiscount: Int) {
         println("<총혜택 금액>")
-        println(priceMessage(discount.getTotalDiscount()))
+        println(priceMessage(totalDiscount))
         println()
     }
 
-    fun printFinalPayment(finalPayment:Int){
+    fun printFinalPayment(finalPayment: Int) {
         println("<할인 후 예상 결제 금액>")
         println(priceMessage(finalPayment))
         println()
     }
 
-    fun printEventBadge(totalDiscount:Int){
-        val compute=CalenderCompute()
+    fun printEventBadge(totalDiscount: Int) {
+        val compute = CalenderCompute()
         println("<12월 이벤트 배지>")
         println(compute.decideBadge(totalDiscount))
     }
