@@ -3,6 +3,7 @@ package christmas.view.output
 import camp.nextstep.edu.missionutils.test.NsTest
 import christmas.domain.CalenderDay
 import christmas.domain.CalenderDiscount
+import christmas.domain.CalenderResult
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -89,7 +90,7 @@ class OutputViewTest : NsTest() {
         val date = 3
 
         //when
-        out.printDiscountLog(CalenderDiscount(CalenderDay(date), orderMenu))
+        out.printDiscountLog(CalenderResult(date, orderMenu))
 
         //then
         assertThat(output()).contains(

@@ -5,12 +5,6 @@ import christmas.constants.main
 
 class CalenderCompute {
 
-    fun finalPaymentCompute(totalPrice: Int, totalDiscount: Int): Int {
-        if (totalPrice > 120000)
-            return (totalPrice + totalDiscount + Menu.ofPrice("샴페인"))
-        return (totalPrice - totalDiscount)
-    }
-
     fun christmasDDayDiscountCompute(date: Int): Int {
         var discount = 0
         if (date <= 25) {

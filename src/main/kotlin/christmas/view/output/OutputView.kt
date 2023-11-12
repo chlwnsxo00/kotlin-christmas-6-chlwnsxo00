@@ -12,6 +12,7 @@ import christmas.constants.weekendDiscountMessage
 import christmas.domain.CalenderCompute
 import christmas.domain.CalenderDay
 import christmas.domain.CalenderDiscount
+import christmas.domain.CalenderResult
 import java.awt.SystemColor.menu
 import java.text.NumberFormat
 import java.util.Locale
@@ -88,14 +89,14 @@ class OutputView {
         println()
     }
 
-    fun printDiscountLog(discount: CalenderDiscount) {
+    fun printDiscountLog(result: CalenderResult) {
         println("<혜택 내역>")
-        printChristmasDDayDiscountResult(discount.christmasDDayDiscount())
-        printWeekdayDiscountResult(discount.weekdayDiscount())
-        printWeekendDiscountResult(discount.weekendDiscount())
-        printSpecialDiscountResult(discount.specialDiscount())
-        presentationDiscount(discount.presentationDiscount())
-        if (discount.getTotalDiscount() == 0)
+        printChristmasDDayDiscountResult(result.christmasDDayResult())
+        printWeekdayDiscountResult(result.weekdayResult())
+        printWeekendDiscountResult(result.weekendResult())
+        printSpecialDiscountResult(result.specialResult())
+        presentationDiscount(result.presentationResult())
+        if (result.getTotalDiscount() == 0)
             println(noneDiscountMessage)
         println()
     }
