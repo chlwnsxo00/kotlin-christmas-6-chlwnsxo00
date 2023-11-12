@@ -44,6 +44,6 @@ class CalenderResult(private val date: Int, private val result: Map<String, Int>
     fun getFinalPayment() : Int{
         if (isTotalPriceOver120000())
             return (getTotalPrice() + totalDiscount + Menu.ofPrice("샴페인"))
-        return (getTotalPrice() - totalDiscount)
+        return (getTotalPrice() + totalDiscount)
     }
 }

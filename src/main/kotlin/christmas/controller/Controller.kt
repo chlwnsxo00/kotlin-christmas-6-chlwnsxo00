@@ -19,11 +19,6 @@ class Controller {
         val result = CalenderResult(visitDate, menuOrder)
         output.printIntroPreviewEventBenefits(visitDate)
         output.printOrderedMenu(menuOrder)
-        output.printTotalPriceBeforeDiscount(result.getTotalPrice())
-        output.printPresentationMenu(result.isTotalPriceOver120000())
-        output.printDiscountLog(result)
-        output.printTotalDiscount(result.getTotalDiscount())
-        output.printFinalPayment(result.getFinalPayment())
-        output.printEventBadge(result.getTotalDiscount())
+        output.printEventResult(result)
     }
 }

@@ -12,11 +12,8 @@ class CalenderDiscountTest {
         val discount = CalenderDiscount(date, menu)
         val result = -2000
 
-        //when
-        discount.christmasDDayDiscount()
-
         //then
-        assertThat(discount).extracting("totalDiscount").isEqualTo(result)
+        assertThat(discount.christmasDDayDiscount()).isEqualTo(result)
     }
 
     @Test
@@ -27,26 +24,20 @@ class CalenderDiscountTest {
         val discount = CalenderDiscount(date, menu)
         val result = -4046
 
-        //when
-        discount.weekdayDiscount()
-
         //then
-        assertThat(discount).extracting("totalDiscount").isEqualTo(result)
+        assertThat(discount.weekdayDiscount()).isEqualTo(result)
     }
 
     @Test
     fun `weekendDiscount 메소드 사용시 할인 적용 및 출력`() {
         //given
-        val date = 11
+        val date = 1
         val menu = mutableMapOf(Pair("타파스", 2), Pair("티본스테이크", 1))
         val discount = CalenderDiscount(date, menu)
         val result = -2023
 
-        //when
-        discount.weekendDiscount()
-
         //then
-        assertThat(discount).extracting("totalDiscount").isEqualTo(result)
+        assertThat(discount.weekendDiscount()).isEqualTo(result)
     }
 
     @Test
@@ -57,11 +48,8 @@ class CalenderDiscountTest {
         val discount = CalenderDiscount(date, menu)
         val result = -1000
 
-        //when
-        discount.specialDiscount()
-
         //then
-        assertThat(discount).extracting("totalDiscount").isEqualTo(result)
+        assertThat(discount.specialDiscount()).isEqualTo(result)
     }
 
     @Test
@@ -72,10 +60,7 @@ class CalenderDiscountTest {
         val discount = CalenderDiscount(date, menu)
         val result = -25000
 
-        //when
-        discount.presentationDiscount()
-
         //then
-        assertThat(discount).extracting("totalDiscount").isEqualTo(result)
+        assertThat(discount.presentationDiscount()).isEqualTo(result)
     }
 }
